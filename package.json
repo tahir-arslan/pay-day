@@ -1,0 +1,21 @@
+{
+  "name": "pay-day",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tahir-arslan/pay-day.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tahir-arslan/pay-day/issues"
+  },
+  "homepage": "https://github.com/tahir-arslan/pay-day#readme"
+}
