@@ -125,6 +125,31 @@ nav a:hover {
     margin-top: 20px;
 }
 
+.savebtn {
+    display: none;
+}
+
+.edit-info-container {
+    margin: 40px;
+}
+
+.edit-info {
+    color: black;
+    background-color: var(--teritary);
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    margin: 20px;
+}
+
+
+.edit-info:hover {
+    color: white;
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
 #pop-up {
     background: black;
     box-sizing: border-box;
