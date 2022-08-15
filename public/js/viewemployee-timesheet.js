@@ -7,10 +7,6 @@ const editTimesheet = event => {
     document.querySelector(".canceltimebtn").style.display = "inline-block";
 };
 
-const cancelFunction = () => {
-    document.location.reload()
-};
-
 async function saveTimesheet(event) {
     const id = event.target.getAttribute("save-id");
 
