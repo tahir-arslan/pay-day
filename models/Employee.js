@@ -30,7 +30,7 @@ Employee.init(
         },
         hourly_wage: {
             type: DataTypes.DECIMAL(10,2),
-            allowNull: false
+            allowNull: true
         },
         password: {
             type: DataTypes.STRING,

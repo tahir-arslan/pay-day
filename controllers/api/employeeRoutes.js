@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    User.findOne({
+    Employee.findOne({
         where: {
             id: req.params.id,
         },
@@ -59,31 +59,33 @@ router.post('/', (req, res) => {
         })
 });
 
-router.put('/:id', (req, res) => {
-    // if (req.session.employee_id === req.params.id || req.session.is_manager) {
+router.put('/:id', withAuth, (req, res) => {
+    if (req.session.employee_id === req.params.id || req.session.is_manager) {
         Employee.update(req.body, {
             individualHooks: true,
             where: {
                 id: req.params.id
             }
+
         })
-            .then(dbEmployeeData => {
-                if (!dbEmployeeData[0]) {
-                    res.status(404).json({ message: 'No user found with this id' });
-                    return;
-                }
-                res.json(dbEmployeeData)
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    // } else {
-    //     res.status(401).json({ message: 'You have no right to change the information of this employee.' })
-    // }
+        .then(dbEmployeeData => {
+        if (!dbEmployeeData[0]) {
+            res.status(404).json({ message: 'No user found with this id' });
+            return;
+        }
+        res.json(dbEmployeeData)
+    })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+} else {
+    res.status(401).json({ message: 'You have no right to change the information of this employee.' });
+    res.json(dbEmployeeData);
+}
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Employee.destroy({
         where: {
             id: req.params.id
@@ -122,11 +124,11 @@ router.post('/login', (req, res) => {
             req.session.save(() => {
                 req.session.employee_id = dbEmployeeData.id;
                 req.session.is_manager = dbEmployeeData.is_manager;
-                req.session.employee_name = dbEmployeeData.first_name +" " + dbEmployeeData.last_name;
+                req.session.employee_name = dbEmployeeData.first_name + " " + dbEmployeeData.last_name;
                 req.session.loggedIn = true;
                 res.json({ user: dbEmployeeData, message: 'You are now logged in!' });
             });
-            
+
         })
         .catch(err => {
             console.log(err);

@@ -20,6 +20,10 @@ Timesheet.init(
             type: DataTypes.DATE,
             allowNull: true
         },
+        total_time: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
         employee_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

@@ -2,6 +2,11 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Employee, Timesheet } = require('../models');
 const withAuth = require('../utils/auth');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const duration = require('dayjs/plugin/duration');
+dayjs.extend(utc);
+dayjs.extend(duration)
 
 router.get('/clockin', withAuth, (req, res) => {
     res.render('employee-clockin', {
@@ -17,7 +22,8 @@ router.get('/dashboard', withAuth, (req,res) => {
     attributes: [
         'id',
         'time_in',
-        'time_out'
+        'time_out',
+        'total_time'
     ],
     include: [
         {
@@ -28,26 +34,23 @@ router.get('/dashboard', withAuth, (req,res) => {
     })
     .then(dbTimesheetData => {
         const data = dbTimesheetData.map(element => element.get({ plain: true }));
-        let timesheetData = [];
         const employeeName = req.session.employee_name;
-        data.map(element => {
+        let timesheetData = [];
+        data.map(shift => {
             let timesheet = {};
-            const date = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();
+            const date = dayjs(shift.time_in).format('YYYY-MM-DD');
             timesheet.date = date;
-            timesheet.time_in = new Date(element.time_in).getHours() + ":" + new Date(element.time_in).getMinutes();
-            timesheet.time_out = new Date(element.time_out).getHours() + ":" + new Date(element.time_out).getMinutes();
-            let timeDifference = new Date(element.time_out) - new Date(element.time_in) - 60 * 60 * 1000;
-            const hr = Math.floor(timeDifference / (60 * 60 * 1000));
-            timeDifference = timeDifference - hr * 60 * 60 * 1000;
-            const min = Math.floor(timeDifference / (60 * 1000));
-            timesheet.total_time = hr + ":" + min;
+            const time_in = dayjs(shift.time_in).format('HH:mm');
+            timesheet.time_in = time_in;
+            const time_out = dayjs(shift.time_out).format('HH:mm');
+            timesheet.time_out = time_out;
+            const totalTime = dayjs.duration(shift.total_time, 'minutes').format('HH:mm');
+            timesheet.totalTime = totalTime;
             timesheetData.push(timesheet);
-        });
+        })
         
-        console.dir(timesheetData)
         res.render('employee-dashboard', {
             timesheetData,
-            employeeName,
             loggedIn: req.session.loggedIn
         });
     })

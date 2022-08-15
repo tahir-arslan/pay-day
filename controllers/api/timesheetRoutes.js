@@ -3,13 +3,17 @@ const { Op } = require('sequelize');
 const { Employee, Timesheet } = require('../../models');
 const withAuth = require('../../utils/auth');
 const managerAuth = require('../../utils/managerAuth');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+dayjs.extend(utc);
 
 router.get('/', (req, res) => {
     Timesheet.findAll({
         attributes: [
             'id',
             'time_in',
-            'time_out'
+            'time_out',
+            'total_time'
         ],
         include: [
             {
@@ -25,11 +29,10 @@ router.get('/', (req, res) => {
         })
 });
 
-router.get('/check', (req, res) => {
-    const currentDate = new Date(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate());
-    const laterDate = new Date(currentDate);
-    laterDate.setDate(laterDate.getDate() + 1);
-    console.dir(currentDate, laterDate);
+router.get('/check', withAuth, (req, res) => {
+    const currentDate = dayjs().startOf('day').utc().format();
+    const laterDate = dayjs(currentDate).add(1, 'day').utc().format();
+
     Timesheet.findOne({
         where: {
             employee_id: req.session.employee_id,
@@ -54,7 +57,7 @@ router.get('/check', (req, res) => {
         })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
     Timesheet.findOne({
         where: {
             id: req.params.id
@@ -90,10 +93,8 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/clockout', (req, res) => {
-    const currentDate = new Date(new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate());
-    const laterDate = new Date(currentDate);
-    laterDate.setDate(laterDate.getDate() + 1);
-    console.dir(currentDate, laterDate);
+    const currentDate = dayjs().startOf('day').utc().format();
+    const laterDate = dayjs(currentDate).add(1, 'day').utc().format();
     Timesheet.findOne({
         where: {
             employee_id: req.session.employee_id,
@@ -102,7 +103,6 @@ router.put('/clockout', (req, res) => {
         attributes: [
             'id',
             'time_in',
-            'time_out'
         ],
         include: [
             {
@@ -113,15 +113,20 @@ router.put('/clockout', (req, res) => {
     })
         .then(dbTimesheetData => {
             const id = dbTimesheetData.id;
+            const time_in = dbTimesheetData.time_in;
+            const time_out = new Date();
+            const total_time = dayjs(time_out).diff(dayjs(time_in), 'minutes');
+
             Timesheet.update({
-                time_out: new Date()
+                time_out: time_out,
+                total_time: total_time
             },
-                {
-                    individualHooks: true,
-                    where: {
-                        id: id
-                }
-                })
+            {
+                individualHooks: true,
+                where: {
+                    id: id
+            }
+            })
                 .then(dbTimesheetData => {
                     if (!dbTimesheetData[0]) {
                         res.status(404).json({ message: 'No timesheet found with this id' });
@@ -137,15 +142,27 @@ router.put('/clockout', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    Timesheet.update(req.body, {
+    const time_in = dayjs(req.body.date + req.body.time_in).utc().format();
+    const time_out = dayjs(req.body.date + req.body.time_out).utc().format();
+    const total_time = dayjs(time_out).diff(dayjs(time_in), 'minutes');
+    const id = req.params.id;
+    Timesheet.update({
+        time_in: time_in,
+        time_out: time_out,
+        total_time: total_time
+    },
+    {
         individualHooks: true,
         where: {
             id: req.params.id
-        }
+    }
     })
         .then(dbTimesheetData => {
-            if (!dbTimesheetData[0]) {
+            if (!dbTimesheetData[0] && !dbTimesheetData[1]) {
                 res.status(404).json({ message: 'No timesheet found with this id' });
+                return;
+            } else if (!dbTimesheetData[0] && dbTimesheetData[1]) {
+                res.status(404).json({ message: "You didn't change anything."});
                 return;
             }
             res.json(dbTimesheetData)
