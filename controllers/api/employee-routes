@@ -21,8 +21,8 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: Post,
-        attributes: ['id', 'first_name', 'last_name', 'hourly_wage', 'is_manager']
+        model: Payroll,
+        attributes: ['id', 'date_range', 'total_time_in_range', 'total_pay']
       }
     ]
   })
