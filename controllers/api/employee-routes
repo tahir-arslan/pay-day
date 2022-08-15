@@ -1,0 +1,120 @@
+const router = require('express').Router();
+const { Employee, Payroll, Time } = require('../../models');
+
+// get all employees
+router.get('/', (req, res) => {
+  Employee.findAll({
+    attributes: { exclude: ['UserPassword'] }
+  })
+    .then(dbEmployeeData => res.json(dbEmployeeData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  Employee.findOne({
+    attributes: { exclude: ['UserPassword'] },
+    where: {
+      id: req.params.id
+    },
+    include: [
+      {
+        model: Payroll,
+        attributes: ['id', 'date_range', 'total_time_in_range', 'total_pay']
+      }
+    ]
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No Employee found with this id' });
+        return;
+      }
+      res.json(dbEmployeeData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.post('/', (req, res) => {
+  Employee.create({
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
+    hourly_wage: req.body.hourly_wage,
+    is_manager: req.body.is_manager,
+    UserPassword: req.body.UserPassword
+  })
+    .then(dbEmployeeData => res.json(dbEmployeeData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.post('/login', (req, res) => {
+  Employee.findOne({
+    where: {
+      last_name: req.body.last_name
+    }
+  }).then(dbEmployeeData => {
+    if (!dbEmployeeData) {
+      res.status(400).json({ message: 'No Employee with that name address!' });
+      return;
+    }
+
+    const validPassword = dbEmployeeData.checkPassword(req.body.UserPassword);
+
+    if (!validPassword) {
+      res.status(400).json({ message: 'Incorrect password!' });
+      return;
+    }
+
+    res.json({ Employee: dbEmployeeData, message: 'You are now logged in!' });
+  });
+});
+
+router.put('/:id', (req, res) => {
+
+  // pass in req.body instead to only update what's passed through
+  Employee.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData[0]) {
+        res.status(404).json({ message: 'No Employee found with this id' });
+        return;
+      }
+      res.json(dbEmployeeData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+  Employee.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No Employee found with this id' });
+        return;
+      }
+      res.json(dbEmployeeData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+module.exports = router;
