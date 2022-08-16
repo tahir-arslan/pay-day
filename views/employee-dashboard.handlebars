@@ -1,0 +1,21 @@
+<h2 class="text-center employee-name">
+    {{employeeName}}
+</h2>
+
+{{#if timesheetData}}
+<table class="table table-striped table-responsive employee-workinghour-table">
+    <tr>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Total</th>
+    </tr>
+    {{#each timesheetData as |shift| }}
+    <tr>
+    {{> timesheetdetails shift}}
+    </tr>
+    {{/each}}
+{{else}}
+<h2 class="text-center">Current no working hours available</h2>
+{{/if}}
+</table>

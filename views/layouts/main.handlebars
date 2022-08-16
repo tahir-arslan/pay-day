@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Day</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Hanalei+Fill&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <header>
+            <div>
+                <h1 id="logo">
+                    Pay Day
+                </h1>
+            </div>
+            {{#if is_manager}}
+            <nav>
+                <ul class="row d-flex align-items-center">
+                    <li class="col-6 col-md-4">
+                        <a  href="/manager/dashboard">Dashboard</a>
+                    </li>
+                    <li class="col-6 col-md-4" >
+                        <a href="/employee/clockin">Clock In</a>
+                    </li>
+                    <li class="col-12 col-md-4">
+                        <a id="logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            {{else if loggedIn}}
+            <nav>
+                <ul class="row d-flex align-items-center">
+                    <li class="col-6 col-md-4">
+                        <a  href="/employee/dashboard">Dashboard</a>
+                    </li>
+                    <li class="col-6 col-md-4" >
+                        <a href="/employee/clockin">Clock In</a>
+                    </li>
+                    <li class="col-12 col-md-4">
+                        <a id="logout">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            {{else}}
+            <p id="slogan">an app to clock your working hours and more</p>
+            {{/if}}
+        </header>
+        <main>
+            {{{body}}}
+        </main>
+        <div id="pop-up">
+            <p id="alert-message"></p>
+            <button id="close-btn">Ok</button>
+        </div>
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+        <script src="/js/modal.js"></script>
+    </div>
+</body>
