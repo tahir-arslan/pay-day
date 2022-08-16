@@ -1,0 +1,74 @@
+<h2 class="text-center employee-name">
+    {{employee.first_name}} {{employee.last_name}}
+</h2>
+<br>
+<div>
+    <h3 class="text-center">Timesheet</h3>
+    <table class="table table-striped table-responsive employee-workinghour-table">
+        <tr>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Total</th>
+            <th>Edit</th>
+        </tr>
+
+        {{#each timesheetData as |shift|}}
+        <tr sheet-id="{{shift.id}}">
+        {{> timesheetdetails shift}}
+        <td>
+        <button class="editbtn edittimebtn" edit-id="{{shift.id}}">edit</button>
+        <button class="savebtn savetimebtn" save-id="{{shift.id}}">save</button>
+        <button class="cancelbtn canceltimebtn" cancel-id="{{shift.id}}">cancel</button>
+        </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+<div>
+    <h3 class="text-center">Information</h3>
+        <table class="table table-striped table-responsive">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Hourly Wage
+                </th>
+                <th>
+                    Edit
+                </th>
+            </tr>
+            <tr employee-id="{{employee.id}}">
+                <td>
+                    {{employee.id}}
+                </td>
+                <td>
+                    {{employee.first_name}}
+                </td>
+                <td>
+                    {{employee.last_name}}
+                </td>
+                <td>
+                    {{employee.hourly_wage}}
+                </td>
+                <td>
+                    <button class="editbtn editinfobtn" edit-id="{{employee.id}}">edit</button>
+                    <button class="savebtn saveinfobtn" save-id="{{employee.id}}">save</button>
+                    <button class="cancelbtn cancelinfobtn" cancel-id="{{employee.id}}">cancel</button>
+                </td>
+            </tr>
+        </table>
+</div>
+<script src="/js/viewemployee-info.js"></script>
+{{#if timesheetData}}
+<script src="/js/viewemployee-timesheet.js"></script>
+{{/if}}
+

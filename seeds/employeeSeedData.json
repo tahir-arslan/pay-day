@@ -1,0 +1,26 @@
+[
+    {
+        "is_manager": true,
+		"first_name": "Manager",
+		"last_name": "Example",
+        "password": "111111"
+    },
+    {
+		"first_name": "Employee",
+		"last_name": "Example",
+		"hourly_wage": "18",
+        "password": "222222"
+    },
+    {
+		"first_name": "Jane",
+		"last_name": "Doe",
+		"hourly_wage": "18.5",
+        "password": "333333"
+    },
+    {
+        "first_name": "John",
+		"last_name": "Smith",
+		"hourly_wage": "19.5",
+        "password": "444444"
+    }
+]

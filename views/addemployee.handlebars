@@ -1,0 +1,23 @@
+<form class="form create-employee-form col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 d-flex flex-column align-items-center">
+    <h3 class="text-center">Create a new employee</h3>
+    <div class="form-element">
+        <label for="first-name">First Name: </label>
+        <input type="text" id="first-name" />
+    </div>
+    <div class="form-element">
+        <label for="last-name">Last Name: </label>
+        <input type="text" id="last-name" />
+    </div>
+    <div class="form-element">
+        <label for="hourly-wage">Hourly Wage: </label>
+        <input pattern="^\d*(\.\d{0,2})?$" id="hourly-wage" />
+    </div>
+    <div class="form-element">
+        <label for="password">Password: </label>
+        <input type="text" id="password" />
+    </div>
+    <div class="form-element">
+        <button type="submit">Create</button>
+    </div>
+</form>
+<script src="/js/addemployee.js"></script>
