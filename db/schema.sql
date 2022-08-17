@@ -1,3 +1,3 @@
 DROP DATABASE IF EXISTS pay_day_db;
-CREATE DATABASE pay_day_db;
 
+CREATE DATABASE pay_day_db;

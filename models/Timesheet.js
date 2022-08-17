@@ -1,7 +1,7 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Timesheet extends Model {}
+class Timesheet extends Model { }
 
 Timesheet.init(
     {
@@ -13,7 +13,7 @@ Timesheet.init(
         },
         time_in: {
             type: DataTypes.DATE,
-            allowNull:false,
+            allowNull: false,
             defaultValue: Sequelize.NOW
         },
         time_out: {
@@ -22,6 +22,10 @@ Timesheet.init(
         },
         total_time: {
             type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        total_pay: {
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: true
         },
         employee_id: {
