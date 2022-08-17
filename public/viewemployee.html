@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pay Day</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Hanalei+Fill&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Rubik:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div class="container-fluid">
-        <header>
-            <div>
-                <h1 id="logo">
-                    Pay Day
-                </h1>
+        <header class="d-flex justify-content-between ">
+            <div class="align-self-center">
+                <a href="" class="d-inline-flex align-items-start">
+                    <img src="assests/images/clock-logo.png" alt="logo" />
+                    <h1 id="logo" class="text-white pt-2">
+                        TICK TOCK
+                    </h1>
+                </a>
             </div>
             <!-- {{#if employee_loggedIn}} -->
             <!-- <nav>
@@ -33,13 +36,13 @@
                 </ul>
             </nav> -->
             <!-- {{#else if manager_loggedIn}} -->
-            <nav>
-                <ul class="row d-flex align-items-center">
+            <nav class="d-flex justify-content-end mb-4">
+                <ul class="row d-flex justify-content-end">
                     <li class="col-6">
-                        <a href="/dashboard">Dashboard</a>
+                        <a href="/dashboard" class="px-3">Dashboard</a>
                     </li>
                     <li class="col-6">
-                        <a id="logout">Logout</a>
+                        <a id="logout" class="px-3">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -48,20 +51,22 @@
             <!-- {{/if}} -->
         </header>
 
-        <main>
+        <main class="border border-dark rounded">
             <h2 class="text-center employee-name">
                 <!-- {{employee.first_name}} {{employee.last_name}} -->
                 John Doe
             </h2>
 
-            <table class="table table-striped table-responsive employee-workinghour-table">
-                <tr>
-                    <th>Date</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th>Total</th>
-                    <th>Edit</th>
-                </tr>
+            <table class="table table-hover table-responsive employee-workinghour-table border-top">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
                 <!-- {{#each time_registries as |shift|}} -->
                 <tr>
                     <td class="date{{shift.id}}">
@@ -81,15 +86,15 @@
                         08:00
                     </td>
                     <td>
-                        <button class="editbtn" id="{{shift.id}}">edit</button>
-                        <button class="savebtn" id="{{shift.id}}">save</button>
+                        <button class="editbtn" id="{{shift.id}}">Edit</button>
+                        <button class="savebtn" id="{{shift.id}}">Save</button>
                     </td>
                 </tr>
                 <!-- {{/each}} -->
             </table>
 
-            
-            
+
+
             <div class="text-center edit-info-container">
                 <a class="edit-info" href="/employee/{{time_registry.employee.id}}">Edit information of this employee</a>
             </div>

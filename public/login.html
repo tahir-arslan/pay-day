@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pay Day</title>
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-   <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Hanalei+Fill&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Day</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Rubik:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div class="container-fluid">
         <header>
-            <div>
-                <h1 id="logo">
-                    Pay Day
+            <div class="align-self-center">
+                <img src="assests/images/clock-logo.png" alt="logo" width="60" height="60" />
+                <h1 id="logo" class="text-white pt-2">
+                    TICK TOCK
                 </h1>
-            </div>
-            <!-- {{#if employee_loggedIn}} -->
-            <!-- <nav>
+                <!-- {{#if employee_loggedIn}} -->
+                <!-- <nav>
                 <ul class="row d-flex align-items-center">
                 <li class="col-6 col-md-4">
                     <a  href="/dashboard">Dashboard</a>
@@ -36,22 +36,33 @@
                 <p id="slogan">an app to clock your working hours and more</p>
                 <!-- {{/if}} -->
         </header>
-
         <main>
-            <div class="row login">
-                <form class="form login-form col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 row">
-                    <h2 class="text-center col-12">Log In</h2>
-                    <div class="form-element col-12 row">
-                        <label for="username-login" class="col-12 col-md-4">Username: </label>
-                        <input type="text" id="username-login" class="col-12 col-md-8"/>
+            <section class="h-20">
+                <div class="container-fluid">
+                    <div class="row w-100 vh-50">
+                        <div class="col-sm-6 text-black my-auto" style="padding-left: 10rem;">
+                            <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+                                <form style="width: 30rem;">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="username-login" class="form-control form-control-lg" />
+                                        <label class="form-label" for="username-login">Username</label>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password-login" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password-login">Password</label>
+                                    </div>
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 px-0 d-none d-sm-block">
+                            <img src="./assests/images/login-splash.png" alt="Login image" class="w-75 h-100" style="object-fit: cover; object-position: left;">
+                        </div>
                     </div>
-                    <div class="form-element col-12 row">
-                        <label for="password-login" class="col-12 col-md-4">Password: </label>
-                        <input type="password" id="password-login" class="col-12 col-md-8"/>
-                    </div>
-                    <button type="submit" class="col-6 offset-3 login-button">Log In</button>
-                </form>
-            </div>
+                </div>
+            </section>
             <script src="./js/login.js"></script>
         </main>
 
@@ -60,5 +71,5 @@
             <button id="close-btn">Ok</button>
         </div>
         <script src="./js/modal.js"></script>
-    </div>
+        </div>
 </body>
