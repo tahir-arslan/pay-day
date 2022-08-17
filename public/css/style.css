@@ -139,13 +139,13 @@ nav a:hover {
     margin-top: 20px;
 }
 
-.savebtn, .cancelbtn, .editbtn {
+.savebtn, .cancelbtn, .editbtn, .dltbtn {
     font-size: 15px;
     font-weight: normal;
     padding: 3px;
 
 }
-.savebtn, .cancelbtn {
+.savebtn, .cancelbtn, .dltbtn {
     display: none;
 }
 
