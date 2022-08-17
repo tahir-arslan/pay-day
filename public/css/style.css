@@ -32,8 +32,18 @@ header {
     margin-bottom: auto;
 }
 
-main {
+#table {
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+#employeeBg {
     background-image: url("/public/assests/images/background-main.jpg");
+    
+}
+
+main {
+    /* background-image: url("/public/assests/images/background-main.jpg"); */
     height: 100%;
     font-family: 'Lato', sans-serif;
     font-family: 'Rubik', sans-serif;
@@ -244,6 +254,7 @@ nav a:hover {
 }
 
 @media only screen and (max-width: 700px) {
+
     /* * {
         font-size: 1em;
     } */
@@ -251,6 +262,7 @@ nav a:hover {
         flex-direction: column;
         padding: 30px 0px 0px 0px;
     }
+
     main {
         padding: 0px;
         margin: 10px 0px;
@@ -263,6 +275,7 @@ nav a:hover {
         float: none;
         padding-top: 15px;
     }
+
     .table-info {
         padding: 0px;
     }

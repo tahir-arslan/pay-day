@@ -62,12 +62,14 @@
                 <td>
                     $ {{employee.hourly_wage}}
                 </td>
-                <td class="bg-success">
-                    <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
-                    <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
-                    <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
-                    <button class="dltbtn dltinfobtn px-3 my-1" destroy-id="{{employee.id}}">Delete</button>
-                </td>
+                <div>
+                    <td class="bg-success d-flex justify-content-around">
+                        <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
+                        <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
+                        <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
+                        <button class="dltbtn dltinfobtn px-3 my-1" destroy-id="{{employee.id}}">Delete</button>
+                    </td>
+                </div>
             </tr>
         </table>
     </div>
