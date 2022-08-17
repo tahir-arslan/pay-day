@@ -31,7 +31,7 @@ async function saveInfo() {
     const id = document.querySelector(".saveinfobtn").getAttribute("save-id");
     const hourly_wage = document.querySelector(`[employee-id="${id}"] :nth-child(4)`).textContent.trim();
     if (isNaN(hourly_wage)) {
-        document.querySelector('#alert-message').textContent = "Please enter a valid hourly wage";
+        document.querySelector('#alert-message').textContent = "Please enter a valid hourly wage.";
         document.querySelector('#pop-up').style.display = 'block';
         return;
     };
@@ -53,9 +53,7 @@ async function saveInfo() {
         document.querySelector('#alert-message').textContent = res.message;
         document.querySelector('#pop-up').style.display = 'block';
     }
-} 
-       
-
+}
 
 document.querySelector(".editinfobtn").addEventListener("click", editInfo);
 document.querySelector(".saveinfobtn").addEventListener("click", saveInfo);

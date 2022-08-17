@@ -1,51 +1,56 @@
-<h2 class="text-center employee-name">
-    {{employee.first_name}} {{employee.last_name}}
-</h2>
-<br>
-<div>
-    <h3 class="text-center">Timesheet</h3>
-    <table class="table table-striped table-responsive employee-workinghour-table">
-        <tr>
-            <th>Date</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Total</th>
-            <th>Edit</th>
-        </tr>
-
-        {{#each timesheetData as |shift|}}
-        <tr sheet-id="{{shift.id}}">
-        {{> timesheetdetails shift}}
-        <td>
-        <button class="editbtn edittimebtn" edit-id="{{shift.id}}">edit</button>
-        <button class="savebtn savetimebtn" save-id="{{shift.id}}">save</button>
-        <button class="cancelbtn canceltimebtn" cancel-id="{{shift.id}}">cancel</button>
-        </td>
-        </tr>
-        {{/each}}
-    </table>
-</div>
-
-<div>
-    <h3 class="text-center">Information</h3>
-        <table class="table table-striped table-responsive">
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    Last Name
-                </th>
-                <th>
-                    Hourly Wage
-                </th>
-                <th>
-                    Edit
-                </th>
+<div class="border border-dark rounded table-info bg-warning">
+    <h2 class="text-center employee-name">
+        {{employee.first_name}} {{employee.last_name}}
+    </h2>
+    <br>
+    <div class="pb-3">
+        <h3 class="text-center">Timesheet</h3>
+        <table class="table table-hover table-responsive employee-workinghour-table border-top">
+            <thead class="table-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            {{#each timesheetData as |shift|}}
+            <tr sheet-id="{{shift.id}}">
+                {{> timesheetdetails shift}}
+                <div>
+                    <td class="bg-success d-flex justify-content-around">
+                        <button class="editbtn edittimebtn px-3 my-1" edit-id="{{shift.id}}">Edit</button>
+                        <button class="savebtn savetimebtn px-3 my-1" save-id="{{shift.id}}">Save</button>
+                        <button class="cancelbtn canceltimebtn px-3 my-1" cancel-id="{{shift.id}}">Cancel</button>
+                    </td>
+                </div>
             </tr>
+            {{/each}}
+        </table>
+    </div>
+
+    <div>
+        <h3 class="text-center">Information</h3>
+        <table class="table table-hover table-responsive employee-workinghour-table border-top">
+            <thead class="table-light">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Hourly Wage
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
             <tr employee-id="{{employee.id}}">
                 <td>
                     {{employee.id}}
@@ -57,19 +62,21 @@
                     {{employee.last_name}}
                 </td>
                 <td>
-                    {{employee.hourly_wage}}
+                    $ {{employee.hourly_wage}}
                 </td>
-                <td>
-                    <button class="editbtn editinfobtn" edit-id="{{employee.id}}">edit</button>
-                    <button class="savebtn saveinfobtn" save-id="{{employee.id}}">save</button>
-                    <button class="cancelbtn cancelinfobtn" cancel-id="{{employee.id}}">cancel</button>
-                    <button class="dltbtn dltinfobtn" destroy-id="{{employee.id}}">delete</button>
-                </td>
+                <div>
+                    <td class="bg-success d-flex justify-content-around">
+                        <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
+                        <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
+                        <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
+                        <button class="dltbtn dltinfobtn px-3 my-1" destroy-id="{{employee.id}}">Delete</button>
+                    </td>
+                </div>
             </tr>
         </table>
+    </div>
+    <script src="/js/viewemployee-info.js"></script>
+    {{#if timesheetData}}
+    <script src="/js/viewemployee-timesheet.js"></script>
+    {{/if}}
 </div>
-<script src="/js/viewemployee-info.js"></script>
-{{#if timesheetData}}
-<script src="/js/viewemployee-timesheet.js"></script>
-{{/if}}
-

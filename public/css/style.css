@@ -1,7 +1,9 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 
 :root {
@@ -10,16 +12,48 @@
     --teritary: #81B29A;
 }
 
-a {
+a,
+a:link,
+a:visited {
     text-decoration: none;
+    color: black;
+}
+
+td {
+    font: black;
 }
 
 header {
     background-color: var(--primary);
     color: white;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 10px;
+    padding: 20px 35px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#table {
+    background-color: aliceblue;
+    opacity: 0.9;
+}
+
+#employeeBg {
+    background-image: url("/public/assests/images/background-main.jpg");
+    
+}
+
+main {
+    /* background-image: url("/public/assests/images/background-main.jpg"); */
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin: 1vw 5%;
+}
+
+.adaptive-view {
+    padding: 10px;
 }
 
 button {
@@ -36,35 +70,36 @@ button:hover {
 }
 
 #logo {
-    font-family: 'Hanalei Fill', cursive;
-    font-size: 50px;
+    font-size: 1.5em;
+    padding-left: 5px;
+}
+
+#logo-login {
+    font-size: 3em;
 }
 
 #slogan {
     font-style: italic;
 }
 
+.center {
+    margin: auto;
+    position: center;
+}
+
 .login {
     margin-top: 50px;
+    margin: auto;
+    position: center;
 }
 
 .login-info {
     background-color: black;
     color: white;
-    width: fit-content;
+    width: auto;
     margin: auto;
     margin-bottom: 20px;
     padding: 15px;
-}
-
-.login-form, .create-employee-form {
-    background-color: var(--secondary);
-    padding: 20px;
-}
-
-.login-form h2 {
-    font-style: italic;
-    font-weight: bold;
 }
 
 .form-element {
@@ -76,12 +111,10 @@ button:hover {
     margin-bottom: 15px;
 }
 
-nav {
-    margin-top: 30px;
-}
-
-nav li {
-    list-style: none;
+li.topnav {
+    list-style-type: none;
+    float: left;
+    padding: 0 10px;
 }
 
 nav a {
@@ -97,60 +130,70 @@ nav a:hover {
     color: black;
 }
 
+.table-info {
+    padding: 30px;
+}
+
 #logout {
     color: black;
     cursor: pointer;
 }
 
 .employee-name {
-    font-style: italic;
-    width: fit-content;
+    width: auto;
     padding: 20px 35px;
     margin: auto;
     margin-top: 20px;
     border-radius: 20px;
-    text-shadow: 4px -4px 4px #000000;
 }
 
-.current-date, .current-time {
+.current-date,
+.current-time {
     font-size: 25px;
     font-family: 'Grenze', serif;
 }
 
-.clockin-button, .clockout-button {
-    width: 200px;
+.clockin-button,
+.clockout-button {
     font-size: 30px;
-    margin: 20px;
     padding: 10px;
+    margin: 10px auto;
     display: none;
 }
 
-.working-stopwatch  {
-    font-size: 45px;
+.message {
+    font-size: 25px;
     font-weight: bold;
+    text-align: center;
 }
 
-.message {
-    font-family: 'Grenze', serif;
+.working-stopwatch {
     font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .create-employee-form {
     margin-top: 20px;
 }
 
-.savebtn, .cancelbtn, .editbtn, .dltbtn {
+.savebtn,
+.cancelbtn,
+.editbtn,
+.dltbtn {
     font-size: 15px;
-    font-weight: normal;
-    padding: 3px;
-
+    font-weight: bold;
+    padding: 3px 10px;
 }
-.savebtn, .cancelbtn, .dltbtn {
+
+.savebtn,
+.cancelbtn,
+.dltbtn {
     display: none;
 }
 
 .edit-container {
-    width: fit-content;
+    width: auto;
     margin: auto;
 }
 
@@ -164,7 +207,6 @@ nav a:hover {
     margin: 20px;
     border-radius: 10px;
 }
-
 
 .edit-info:hover {
     color: white;
@@ -186,7 +228,7 @@ nav a:hover {
 }
 
 #pop-up {
-    background: black;
+    background: #3D405B;
     box-sizing: border-box;
     padding: 10px;
     position: absolute;
@@ -195,6 +237,7 @@ nav a:hover {
     transform: translate(-50%, -50%);
     color: white;
     border: 5px solid white;
+    border-radius: 10px;
     text-align: center;
     display: none;
 }
@@ -202,9 +245,38 @@ nav a:hover {
 #close-btn {
     background-color: var(--teritary);
     color: black;
+    padding: 3px 20px;
 }
 
 #close-btn:hover {
     background-color: var(--primary);
     color: white;
+}
+
+@media only screen and (max-width: 700px) {
+
+    /* * {
+        font-size: 1em;
+    } */
+    header {
+        flex-direction: column;
+        padding: 30px 0px 0px 0px;
+    }
+
+    main {
+        padding: 0px;
+        margin: 10px 0px;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    li.topnav {
+        float: none;
+        padding-top: 15px;
+    }
+
+    .table-info {
+        padding: 0px;
+    }
 }
