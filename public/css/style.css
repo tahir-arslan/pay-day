@@ -165,14 +165,16 @@ nav a:hover {
 
 .savebtn,
 .cancelbtn,
-.editbtn {
+.editbtn,
+.dltbtn {
     font-size: 15px;
     font-weight: bold;
     padding: 3px 10px;
 }
 
 .savebtn,
-.cancelbtn {
+.cancelbtn,
+.dltbtn {
     display: none;
 }
 
