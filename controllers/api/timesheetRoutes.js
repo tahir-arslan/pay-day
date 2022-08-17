@@ -7,7 +7,7 @@ const dayjs = require('dayjs');
 const utc = require('dayjs/plugin/utc');
 dayjs.extend(utc);
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     Timesheet.findAll({
         attributes: [
             'id',
@@ -65,7 +65,8 @@ router.get('/:id', withAuth, (req, res) => {
         attributes: [
             'id',
             'time_in',
-            'time_out'
+            'time_out',
+            'total_time'
         ],
         include: [
             {
@@ -92,7 +93,7 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
-router.put('/clockout', (req, res) => {
+router.put('/clockout', withAuth, (req, res) => {
     const currentDate = dayjs().startOf('day').utc().format();
     const laterDate = dayjs(currentDate).add(1, 'day').utc().format();
     Timesheet.findOne({
@@ -173,7 +174,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, managerAuth, (req, res) => {
     Timesheet.destroy({
         where: {
             id: req.params.id

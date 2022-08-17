@@ -3,7 +3,7 @@ const { Employee, Timesheet } = require('../../models');
 const withAuth = require('../../utils/auth');
 const managerAuth = require('../../utils/managerAuth');
 
-router.get('/', (req, res) => {
+router.get('/', withAuth, managerAuth, (req, res) => {
     Employee.findAll({
         attributes: { exclude: ['password'] }
     })
@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Timesheet,
-                attributes: ['id', 'time_in', 'time_out']
+                attributes: ['id', 'time_in', 'time_out', 'total_time']
             },
         ]
     })
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, managerAuth, (req, res) => {
     Employee.create({
         is_manager: req.body.is_manager,
         first_name: req.body.first_name,
@@ -85,7 +85,7 @@ router.put('/:id', withAuth, (req, res) => {
 }
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', withAuth, managerAuth, (req, res) => {
     Employee.destroy({
         where: {
             id: req.params.id
@@ -93,7 +93,7 @@ router.delete('/:id', withAuth, (req, res) => {
     })
         .then(dbEmployeeData => {
             if (!dbEmployeeData) {
-                res.status(404).json({ message: 'No user found with this id' });
+                res.status(404).json({ message: 'No Employee found with this id' });
                 return;
             }
             res.json(dbEmployeeData);

@@ -19,7 +19,7 @@ router.get('/dashboard', withAuth, managerAuth, (req, res) => {
         include: [
             {
                 model: Timesheet,
-                attributes: ['id', 'time_in', 'time_out']
+                attributes: ['id', 'time_in', 'time_out', 'total_time']
             }
         ]
     })
