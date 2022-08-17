@@ -17,12 +17,12 @@
             </thead>
             {{#each timesheetData as |shift|}}
             <tr sheet-id="{{shift.id}}">
-            {{> timesheetdetails shift}}
-            <td>
-            <button class="editbtn edittimebtn px-3" edit-id="{{shift.id}}">Edit</button>
-            <button class="savebtn savetimebtn px-3" save-id="{{shift.id}}">Save</button>
-            <button class="cancelbtn canceltimebtn px-3" cancel-id="{{shift.id}}">Cancel</button>
-            </td>
+                {{> timesheetdetails shift}}
+                <td>
+                    <button class="editbtn edittimebtn px-3" edit-id="{{shift.id}}">Edit</button>
+                    <button class="savebtn savetimebtn px-3" save-id="{{shift.id}}">Save</button>
+                    <button class="cancelbtn canceltimebtn px-3" cancel-id="{{shift.id}}">Cancel</button>
+                </td>
             </tr>
             {{/each}}
         </table>
