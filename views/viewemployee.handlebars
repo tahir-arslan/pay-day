@@ -18,11 +18,13 @@
             {{#each timesheetData as |shift|}}
             <tr class="align-items-right" sheet-id="{{shift.id}}">
                 {{> timesheetdetails shift}}
-                <td class="align-items-right bg-success">
-                    <button class="editbtn edittimebtn px-3 my-1" edit-id="{{shift.id}}">Edit</button>
-                    <button class="savebtn savetimebtn px-3 my-1" save-id="{{shift.id}}">Save</button>
-                    <button class="cancelbtn canceltimebtn px-3 my-1" cancel-id="{{shift.id}}">Cancel</button>
-                </td>
+                <div>
+                    <td class="d-flex justify-content-around">
+                        <button class="editbtn edittimebtn px-3 my-1" edit-id="{{shift.id}}">Edit</button>
+                        <button class="savebtn savetimebtn px-3 my-1" save-id="{{shift.id}}">Save</button>
+                        <button class="cancelbtn canceltimebtn px-3 my-1" cancel-id="{{shift.id}}">Cancel</button>
+                    </td>
+                </div>
             </tr>
             {{/each}}
         </table>
@@ -62,12 +64,14 @@
                 <td>
                     {{employee.hourly_wage}}
                 </td>
-                <td class="bg-success m-0">
-                    <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
-                    <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
-                    <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
-                    <button class="dltbtn dltinfobtn px-3 my-1" destroy-id="{{employee.id}}">Delete</button>
-                </td>
+                <div>
+                    <td class="d-flex justify-content-around">
+                        <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
+                        <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
+                        <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
+                        <button class="dltbtn dltinfobtn px-3 my-1" destroy-id="{{employee.id}}">Delete</button>
+                    </td>
+                </div>
             </tr>
         </table>
     </div>
