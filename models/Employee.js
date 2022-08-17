@@ -28,8 +28,12 @@ Employee.init(
             type: DataTypes.STRING,
             allowNull: false
         },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         hourly_wage: {
-            type: DataTypes.DECIMAL(10,2),
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: true
         },
         password: {
@@ -37,6 +41,14 @@ Employee.init(
             allowNull: false,
             validate: {
                 len: [6]
+            }
+        },
+        FK_shift: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'employee',
+                key: 'id'
             }
         }
     },
