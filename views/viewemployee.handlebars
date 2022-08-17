@@ -1,4 +1,4 @@
-<div class="border border-dark rounded table-info bg-warning">
+<div class="border border-dark rounded table-info">
     <h2 class="text-center employee-name">
         {{employee.first_name}} {{employee.last_name}}
     </h2>
@@ -16,10 +16,10 @@
                 </tr>
             </thead>
             {{#each timesheetData as |shift|}}
-            <tr sheet-id="{{shift.id}}">
+            <tr class="align-items-right" sheet-id="{{shift.id}}">
                 {{> timesheetdetails shift}}
                 <div>
-                    <td class="bg-success d-flex justify-content-around">
+                    <td class="d-flex justify-content-around">
                         <button class="editbtn edittimebtn px-3 my-1" edit-id="{{shift.id}}">Edit</button>
                         <button class="savebtn savetimebtn px-3 my-1" save-id="{{shift.id}}">Save</button>
                         <button class="cancelbtn canceltimebtn px-3 my-1" cancel-id="{{shift.id}}">Cancel</button>
@@ -62,10 +62,10 @@
                     {{employee.last_name}}
                 </td>
                 <td>
-                    $ {{employee.hourly_wage}}
+                    {{employee.hourly_wage}}
                 </td>
                 <div>
-                    <td class="bg-success d-flex justify-content-around">
+                    <td class="d-flex justify-content-around">
                         <button class="editbtn editinfobtn px-3 my-1" edit-id="{{employee.id}}">Edit</button>
                         <button class="savebtn saveinfobtn px-3 my-1" save-id="{{employee.id}}">Save</button>
                         <button class="cancelbtn cancelinfobtn px-3 my-1" cancel-id="{{employee.id}}">Cancel</button>
