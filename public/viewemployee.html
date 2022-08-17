@@ -12,7 +12,7 @@
 
 <body>
     <div class="container-fluid">
-        <header class="d-flex justify-content-between ">
+        <header class="d-flex justify-content-between">
             <div class="align-self-center">
                 <a href="" class="d-inline-flex align-items-start">
                     <img src="assests/images/clock-logo.png" alt="logo" width="40" height="40" />
@@ -50,15 +50,13 @@
             <!-- <p id="slogan">an app to clock your working hours and more</p> -->
             <!-- {{/if}} -->
         </header>
-
-        <main class="border border-dark rounded">
+        <main class="border border-dark rounded pb-4">
             <h2 class="text-center employee-name">
                 <!-- {{employee.first_name}} {{employee.last_name}} -->
                 John Doe
             </h2>
-
             <table class="table table-hover table-responsive employee-workinghour-table border-top">
-                <thead class="thead-dark">
+                <thead class="table-light">
                     <tr>
                         <th>Date</th>
                         <th>Start</th>
@@ -92,11 +90,8 @@
                 </tr>
                 <!-- {{/each}} -->
             </table>
-
-
-
             <div class="text-center edit-info-container">
-                <a class="edit-info" href="/employee/{{time_registry.employee.id}}">Edit information of this employee</a>
+                <a class="edit-info w-50 mx-auto" href="/employee/{{time_registry.employee.id}}">Edit information of this employee</a>
             </div>
             <script src="./js/viewemployee-info.js"></script>
             <script src="./js/viewemployee-timesheet.js>"></script>
