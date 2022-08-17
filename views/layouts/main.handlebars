@@ -25,31 +25,33 @@
                 </a>
             </div>
             {{!-- direct to different pages after login dependant on user authentication --}}
-            {{#if is_manager}}
-            <nav class="d-flex justify-content-end mb-4">
-                <ul class="row d-flex justify-content-end">
-                    <li class="col-6">
-                        <a  href="/manager/dashboard" class="px-3">Dashboard</a>
-                    </li>
-                    <li class="col-6">
-                        <a id="logout" class="px-3">Logout</a>
-                    </li>
-                </ul>
-            </nav>
-            {{else if loggedIn}}
-            <nav class="d-flex justify-content-end mb-4">
-                <ul class="row d-flex justify-content-end">
-                    <li class="col-6 col-md-4">
-                        <a  href="/employee/dashboard" class="px-3">Dashboard</a>
-                    </li>
-                    <li class="col-6 col-md-4" >
-                        <a href="/employee/clockin" class="px-3">Clock In</a>
-                    </li>
-                    <li class="col-12 col-md-4">
-                        <a id="logout" class="px-3">Logout</a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="align-self-center mb-4">
+                {{#if is_manager}}
+                <nav>
+                    <ul>
+                        <li class="topnav">
+                            <a  href="/manager/dashboard" class="px-3">Dashboard</a>
+                        </li>
+                        <li class="topnav">
+                            <a id="logout" class="px-3">Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+                {{else if loggedIn}}
+                <nav>
+                    <ul>
+                        <li class="topnav">
+                            <a  href="/employee/dashboard" class="px-3">Dashboard</a>
+                        </li>
+                        <li class="topnav" >
+                            <a href="/employee/clockin" class="px-3">Clock In</a>
+                        </li>
+                        <li class="topnav">
+                            <a id="logout" class="px-3">Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             {{!-- delete after --}}
             {{!-- {{else}}
             <p id="slogan">an app to clock your working hours and more</p> --}}
