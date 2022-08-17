@@ -4,6 +4,7 @@ This application assists users to clock-in/out as a timesheet registy and allows
 <!-- Work hours are then calculated with pay-rates (based on the authenticated user) to accurately display their pay-stub. -->
 For better security and data breach prevention the architecture was built with intent for use on a local server environment.
 <br /><br />
+![Desktop Screenshot 2022 08 17 - 18 09 21 31](https://user-images.githubusercontent.com/102763270/185252345-d6345d74-7cc6-4524-a63c-60d02d37e035.png)
 
 ![Project Screenshot](assests\images\project_screenshot.jpg)
 <br /><br />
