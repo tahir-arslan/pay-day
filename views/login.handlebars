@@ -1,13 +1,13 @@
-<section class="center d-flex justify-content-center w-100 vh-50 h-20">
-    <div class="col-sm-6 text-black my-auto " style="padding-left: 10rem;">
-        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-            <form class="login-form" style="width: 30rem;">
+<section class="container rounded shadow login-container">
+    <div class="row">
+        <div class="col align-self-end px-5 pb-4">
+            <form class="login-form">
                 <div class="form-outline mb-4">
-                    <input type="text" id="username-login" class="form-control form-control-lg" />
+                    <input type="text" id="username-login" class="form-control form-control-md" />
                     <label class="form-label" for="username-login">Username</label>
                 </div>
                 <div class="form-outline mb-4">
-                    <input type="password" id="password-login" class="form-control form-control-lg" />
+                    <input type="password" id="password-login" class="form-control form-control-md" />
                     <label class="form-label" for="password-login">Password</label>
                 </div>
                 <div class="pt-1 mb-4">
@@ -15,13 +15,15 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img src="./assests/images/login-splash.png" alt="Login image" class="w-75 h-100" style="object-fit: cover; object-position: left;">
+        <div class="col login-image" style="height: 50vh;">
+            <div class="login-text" style="border-radius: 0 6px 6px 0;">
+                <img src="assests/images/clock-logo.png" alt="logo" width="60" height="60" />
+                <br />
+                <span>TICK TOCK</span>
+                <br />
+                <p id="slogan">an app to clock your working hours and more</p>
+            </div>
+        </div>
     </div>
 </section>
-<div class="row login pt-3">
-    <p class="login-info text-center">&#x2022; Use <strong>username:</strong> <i>Manager_Example</i>, <strong>password:</strong> <i>111111</i> to try the app's manager function.<br>
-    &#x2022; Use <strong>username:</strong> <i>Employee_Example</i>, <strong>password:</strong> <i>222222</i> to try the app's employee function.</p>
-</div>
 <script src="./js/login.js"></script>
