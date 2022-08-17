@@ -6,51 +6,52 @@ let hr = 0;
 let stoptime = true;
 
 function startTimer() {
-  if (stoptime == true) {
+    if (stoptime == true) {
         stoptime = false;
         timerCycle();
     }
 }
+
 function stopTimer() {
-  if (stoptime == false) {
-    stoptime = true;
-    sec = 0;
-    min = 0;
-    hr = 0;
-  }
+    if (stoptime == false) {
+        stoptime = true;
+        sec = 0;
+        min = 0;
+        hr = 0;
+    }
 }
 
 function timerCycle() {
     if (stoptime == false) {
-    sec = parseInt(sec);
-    min = parseInt(min);
-    hr = parseInt(hr);
+        sec = parseInt(sec);
+        min = parseInt(min);
+        hr = parseInt(hr);
 
-    sec = sec + 1;
+        sec = sec + 1;
 
-    if (sec == 60) {
-      min = min + 1;
-      sec = 0;
-    }
-    if (min == 60) {
-      hr = hr + 1;
-      min = 0;
-      sec = 0;
-    }
+        if (sec == 60) {
+            min = min + 1;
+            sec = 0;
+        }
+        if (min == 60) {
+            hr = hr + 1;
+            min = 0;
+            sec = 0;
+        }
 
-    if (sec < 10 || sec == 0) {
-      sec = '0' + sec;
-    }
-    if (min < 10 || min == 0) {
-      min = '0' + min;
-    }
-    if (hr < 10 || hr == 0) {
-      hr = '0' + hr;
-    }
+        if (sec < 10 || sec == 0) {
+            sec = '0' + sec;
+        }
+        if (min < 10 || min == 0) {
+            min = '0' + min;
+        }
+        if (hr < 10 || hr == 0) {
+            hr = '0' + hr;
+        }
 
-    timer.innerHTML = hr + ':' + min + ':' + sec;
-    setTimeout("timerCycle()", 1000);
-  }
+        timer.innerHTML = hr + ':' + min + ':' + sec;
+        setTimeout("timerCycle()", 1000);
+    }
 };
 
 const displayDate = () => {
@@ -59,9 +60,9 @@ const displayDate = () => {
 }
 
 const checkTime = (i) => {
-    if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+    if (i < 10) { i = "0" + i }; // add zero in front of numbers < 10
     return i;
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+}
 
 const displayTime = () => {
     const time = dayjs().format('HH:mm:ss')
@@ -90,7 +91,7 @@ const displayButtonsAndStopwatch = (data) => {
         document.querySelector(".message").innerHTML = `You have clocked in. Have a great day!`;
         startTimer();
     }
-} 
+}
 
 async function displayPage() {
     displayDate();
@@ -108,7 +109,7 @@ async function displayPage() {
     }
 };
 
-async function recordClockInTime () {
+async function recordClockInTime() {
     const response = await fetch('/api/timesheet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
@@ -123,7 +124,7 @@ async function recordClockInTime () {
     }
 };
 
-async function recordClockOutTime () {
+async function recordClockOutTime() {
     const response = await fetch('/api/timesheet/clockout', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
@@ -131,7 +132,7 @@ async function recordClockOutTime () {
 
     const res = await response.json()
     if (response.ok) {
-        document.querySelector(".message").innerHTML = "You have clocked out. See you."
+        document.querySelector(".message").innerHTML = "You have clocked out. See you!"
         document.querySelector(".clockin-button").style.display = "none";
         document.querySelector(".clockout-button").style.display = "none";
     } else {
@@ -140,17 +141,16 @@ async function recordClockOutTime () {
     }
 };
 
-document.querySelector(".clockin-button").onclick = function () {
+document.querySelector(".clockin-button").onclick = function() {
     document.querySelector(".clockout-button").style.display = "block";
     document.querySelector(".clockin-button").style.display = "none";
     startTimer();
     recordClockInTime();
 };
 
-document.querySelector(".clockout-button").onclick = function () {
+document.querySelector(".clockout-button").onclick = function() {
     stopTimer();
     recordClockOutTime()
 };
 
 displayPage();
-

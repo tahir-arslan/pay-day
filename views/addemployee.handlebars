@@ -1,23 +1,24 @@
-<form class="form create-employee-form col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4 d-flex flex-column align-items-center">
-    <h3 class="text-center">Create a new employee</h3>
-    <div class="form-element">
-        <label for="first-name">First Name: </label>
-        <input type="text" id="first-name" />
-    </div>
-    <div class="form-element">
-        <label for="last-name">Last Name: </label>
-        <input type="text" id="last-name" />
-    </div>
-    <div class="form-element">
-        <label for="hourly-wage">Hourly Wage: </label>
-        <input pattern="^\d*(\.\d{0,2})?$" id="hourly-wage" />
-    </div>
-    <div class="form-element">
-        <label for="password">Password: </label>
-        <input type="text" id="password" />
-    </div>
-    <div class="form-element">
-        <button type="submit">Create</button>
+<form class="form d-flex flex-column align-items-center">
+    <div class="border border-dark rounded p-5">
+        <h3 class="text-center">New Employee Information Form</h3>
+        <div class="form-element">
+            <input type="text" id="first-name" class="form-control form-control-md" />
+            <label for="first-name">First Name: </label>
+        </div>
+        <div class="form-element">
+            <input type="text" id="last-name" class="form-control form-control-md" />
+            <label for="last-name">Last Name: </label>
+        </div>
+        <div class="form-element">
+            <input pattern="^\d*(\.\d{0,2})?$" id="hourly-wage" class="form-control form-control-md" />
+            <label for="hourly-wage">Hourly Wage: </label>
+        </div>
+        <div class="form-element">
+            <input type="text" id="password" class="form-control form-control-md" />
+            <label for="password">Password: </label>
+        </div>
+        <div class="form-element">
+            <button class="px-5 py-3" type="submit">Add New Employee</button>
+        </div>
     </div>
 </form>
-<script src="/js/addemployee.js"></script>

@@ -6,57 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tick Tock</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Hanalei+Fill&display=swap" rel="stylesheet">
+    {{!-- <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Hanalei+Fill&display=swap" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Rubik:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <div class="container-fluid">
-        <header>
-            <div>
-                <h1 id="logo">
-                    Tick Tock
-                </h1>
+        {{!-- show header if logged in --}}
+        {{#if loggedIn}}
+        <header class="d-flex justify-content-between">
+            <div class="align-self-center">
+                <a href="" class="d-inline-flex align-items-start">
+                    <img src="../assests/images/clock-logo.png" alt="logo" width="40" height="40" />
+                    <h1 id="logo" class="text-white pt-2">
+                        TICK TOCK
+                    </h1>
+                </a>
             </div>
+            {{!-- direct to different pages after login dependant on user authentication --}}
             {{#if is_manager}}
-            <nav>
-                <ul class="row d-flex align-items-center">
+            <nav class="d-flex justify-content-end mb-4">
+                <ul class="row d-flex justify-content-end">
                     <li class="col-6">
-                        <a  href="/manager/dashboard">Dashboard</a>
+                        <a  href="/manager/dashboard" class="px-3">Dashboard</a>
                     </li>
                     <li class="col-6">
-                        <a id="logout">Logout</a>
+                        <a id="logout" class="px-3">Logout</a>
                     </li>
                 </ul>
             </nav>
             {{else if loggedIn}}
-            <nav>
-                <ul class="row d-flex align-items-center">
+            <nav class="d-flex justify-content-end mb-4">
+                <ul class="row d-flex justify-content-end">
                     <li class="col-6 col-md-4">
-                        <a  href="/employee/dashboard">Dashboard</a>
+                        <a  href="/employee/dashboard" class="px-3">Dashboard</a>
                     </li>
                     <li class="col-6 col-md-4" >
-                        <a href="/employee/clockin">Clock In</a>
+                        <a href="/employee/clockin" class="px-3">Clock In</a>
                     </li>
                     <li class="col-12 col-md-4">
-                        <a id="logout">Logout</a>
+                        <a id="logout" class="px-3">Logout</a>
                     </li>
                 </ul>
             </nav>
-            {{else}}
-            <p id="slogan">an app to clock your working hours and more</p>
+            {{!-- delete after --}}
+            {{!-- {{else}}
+            <p id="slogan">an app to clock your working hours and more</p> --}}
             {{/if}}
         </header>
+        {{else}}
+        <br />
+        {{/if}}
+
         <main>
             {{{body}}}
         </main>
+
         <div id="pop-up">
             <p id="alert-message"></p>
             <button id="close-btn">Ok</button>
         </div>
-    {{#if loggedIn}}
-    <script src="/js/logout.js"></script>
-    {{/if}}
+
+        {{#if loggedIn}}
+        <script src="/js/logout.js"></script>
+        {{/if}}
         <script src="/js/modal.js"></script>
     </div>
 </body>
+
+</html>
