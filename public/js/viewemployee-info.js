@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 
 const cancelFunction = () => {
     document.location.reload()
@@ -15,11 +15,11 @@ const editInfo = () => {
 
 async function deleteFunction () {
     const id = document.querySelector(".dltinfobtn").getAttribute("destroy-id");
-    const respose = await fetch(`/api/employees/${id}`, {
+    const response = await fetch(`/api/employees/${id}`, {
         method: 'delete',
     })
     if (response.ok) {
-        dopcument.location.replace('/manager/dashboard');
+        document.location.replace('/manager/dashboard');
     } else {
         const res = await response.json()
         document.querySelector('#alert-message').textContent = res.message;
