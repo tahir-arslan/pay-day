@@ -1,11 +1,12 @@
-# Pay Day
+# TICK TOCK
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ## Description
 This application assists users to clock-in/out as a timesheet registy and allows managers to keep track of working schedules.
 <!-- Work hours are then calculated with pay-rates (based on the authenticated user) to accurately display their pay-stub. -->
 For better security and data breach prevention the architecture was built with intent for use on a local server environment.
 <br /><br />
 
-![Project Screenshot](assests\images\project_screenshot.jpg)
+![Project Screenshot](./assests/images/Login.png)
 <br /><br />
 
 ## User Story:
@@ -26,6 +27,10 @@ AS a manager user, I WANT to oversee all employee routines to ensure accurate ti
     -   OR I can click one of the existing employees to get access to their entire timesheet report
     -   WHEN I click an employee record, THEN I can also edit this employee’s base information and timesheet
 ```
+
+<br />
+
+![Project Screenshot](./assests/images/Manager_Dashboard.png)
 
 <br />
 
@@ -65,8 +70,10 @@ After the installation is complete do either one of the following options:
     - Deploy the application to `Heroku` and test it live
 - Use case B:
     - Ensure your `MySQL` server is running by executing `mysql -u root -p` from the command line
-    -  Run `npm start` to load the application
+    - Use `mysql` command `SHOW DATABASES;` to ensure the database `pay_day_db` is created
+    - Run `source db/schema.sql` from the CLI if you need to create the `pay_day_db` database
     - Execute `node seeds/seed.js` to populate the database with pre-defined testing data
+    - Run `npm start` to load the application
     - From the web browser navigate to `http://localhost:3001/`
 - Use case C:
     - If you do not want to download and install the application you can also navigate to: https://pay-day-schedule.herokuapp.com and run the currently <strong>[deployed application](https://pay-day-schedule.herokuapp.com)</strong>.
@@ -100,4 +107,5 @@ Please spam our professor's github and pressure him into giving us a perfect sco
 - [Rafael Gomes](https://github.com/rfabreu)
 - [Charles (Dexter) Zacour](https://github.com/DexZax)
 - [Arslan Tahir](https://github.com/tahir-arslan)
-<!-- ## Licenses -->
+## License
+Licensed under the MIT license.
